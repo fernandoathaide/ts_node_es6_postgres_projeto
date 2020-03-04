@@ -28,3 +28,31 @@ sudo apt install postgresql postgresql-contrib
     alter user postgres with password 'senha';
 
 isntall dbeaver para gerenciar os bancos de dados
+
+## Pugins para VS-Code
+    jakethashi.vscode-angular2-emmet
+    angular.ng-template
+    hridoy.angular-snippets
+    natewallace.angular2-inline
+    infinity1207.angular2-switcher
+    formulahendry.auto-close-tag
+    coenraads.bracket-pair-colorizer
+    anseki.vscode-color
+    pranaygp.vscode-css-peek
+    msjsdiag.debugger-for-chrome
+    firefox-devtools.vscode-firefox-debug
+    ms-azuretools.vscode-docker
+    formulahendry.docker-explorer
+    editorconfig.editorconfig
+    abusaidm.html-snippets
+    zignd.html-css-class-completion
+    pkief.material-icon-theme
+    leizongmin.node-module-intellisense
+    eg2.vscode-npm-script
+    christian-kohler.path-intellisense
+    johnpapa.vscode-peacock
+    mommemi.tscompileonsave
+    ms-vscode.vscode-typescript-tslint-plugin
+    morissonmaciel.typescript-auto-compiler
+    rbbit.typescript-hero
+    vscode-icons-team.vscode-icons
