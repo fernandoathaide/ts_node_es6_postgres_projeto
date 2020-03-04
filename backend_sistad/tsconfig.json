@@ -1,0 +1,23 @@
+// Configuração do compilador do TypeScript.
+{
+    "compilerOptions":{
+        "target": "es5",
+        "module": "commonjs",
+        "outDir": "build",
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "types":[
+            "node"
+        ]
+    },
+    "include":[
+        "server/**/*.ts", //Todas as pastas e seus arquivos ts
+        "server/*.ts", //Todas os arquivos ts
+    ],
+    "exclude":[
+        "node_modules"
+    ],
+    "compileOnSave": true,
+    "buildOnSave": true
+}
