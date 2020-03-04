@@ -1,9 +1,9 @@
 
 backend_sistad/node_modules
-.nyc_output
-coverage
-server/server.js
-package-lock.json
-script.txt
-.vscode
-client
+backend_sistad/.nyc_output
+backend_sistad/coverage
+backend_sistad/server/server.js
+backend_sistad/package-lock.json
+backend_sistad/script.txt
+backend_sistad/.vscode
+backend_sistad/client
