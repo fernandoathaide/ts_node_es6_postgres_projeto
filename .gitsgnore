@@ -1,5 +1,5 @@
 
-node_modules
+backend_sistad/node_modules
 .nyc_output
 coverage
 server/server.js
