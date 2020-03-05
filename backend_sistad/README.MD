@@ -7,4 +7,10 @@ npm i @types/express @types/body-parser @types/morgan -D //ou --save-dev
 npm i sequelize sequelize-cli -S
 npm i @types/sequelize -D
 
+npm install @types/node --save-dev
+
 npm install -D ts-node && npm install -D typescript
+
+## Ferramentas para teste unitários
+npm i mocha chai supertest testdouble -D
+npm i @types/mocha @types/chai @types/supertest -D

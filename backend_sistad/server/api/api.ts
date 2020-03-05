@@ -19,6 +19,10 @@ class Api{
         this.aplicationExpress.use(bodyParser.urlencoded({extended: true})); // URLENCODED - Formato dos dados submetidas extended true vai ser capaz de interpretar mais informações do que o padrão.
         this.aplicationExpress.use(bodyParser.json());//Se o que for passado for um JSON transformando em um objeto para ser tratado aqui dentro
         this.aplicationExpress.use(errorHandlerApi);
+        this.aplicationExpress.use('/api',function(req, res, next){
+            console.log('Rodando API.');
+            res.send('<h1>API no Ar!</h1>')
+        });
         this.router(this.aplicationExpress);
     }
 
