@@ -14,3 +14,7 @@ npm install -D ts-node && npm install -D typescript
 ## Ferramentas para teste unitários
 npm i mocha chai supertest testdouble -D
 npm i @types/mocha @types/chai @types/supertest -D
+
+## Inicializando o Sequelize dentro da pasta server
+cd server
+sequelize init

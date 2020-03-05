@@ -46,7 +46,6 @@ isntall dbeaver para gerenciar os bancos de dados
     editorconfig.editorconfig
     abusaidm.html-snippets
     zignd.html-css-class-completion
-    pkief.material-icon-theme
     leizongmin.node-module-intellisense
     eg2.vscode-npm-script
     christian-kohler.path-intellisense
