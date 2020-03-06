@@ -21,7 +21,7 @@ class Api{
         this.aplicationExpress.use(errorHandlerApi);
         this.aplicationExpress.use('/api',function(req, res, next){
             console.log('Rodando API.');
-            res.send('<h1>API no Ar!</h1>')
+            res.send('<h1>API no Ar!</h1>') 
         });
         this.router(this.aplicationExpress);
     }
