@@ -1,4 +1,4 @@
---requeri ./helpers.js
+--require ../../../../build/tests/integration/config/helpers.js
 --reporter spec
 --watch-extensions js
 --slow 5000

@@ -8,5 +8,5 @@ module.exports = {
     serverPort: 3000,
     pgPort: 5432,
     dbURL: 'postgres://postgres:wff%40260981N@localhost:5432/ts-api-teste',
-    secret: 'S3cr3t'
-}
+    secret: 'teste'
+};

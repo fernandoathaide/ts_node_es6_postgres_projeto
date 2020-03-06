@@ -38,7 +38,7 @@ function default_1(sequelize, DataTypes) {
     User.beforeUpdate((user) => {
         return hashPassword(user);
     });
-    
+    /*
     function hashPassword(user) {
         const salt = bcrypt.genSaltSync(10);
         user.set('password', bcrypt.hashSync(user.password, salt));

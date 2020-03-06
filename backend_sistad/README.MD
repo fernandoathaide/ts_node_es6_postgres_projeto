@@ -20,3 +20,7 @@ cd server
 sequelize init
 ### Caso de erro
 npm install -g sequelize-cli
+
+## Biblioteca HTTP Status
+npm i http-status -S
+npm i @types/http-status -D

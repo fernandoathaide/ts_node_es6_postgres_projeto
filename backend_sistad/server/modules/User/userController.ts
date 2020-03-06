@@ -1,4 +1,6 @@
+import * as HTTPStatus from 'http-status';
 import { Request, Response } from 'express';
+import * as _ from 'lodash';
 
 class UserController {
     constructor(){
@@ -6,27 +8,27 @@ class UserController {
     }
 
     getAll(req: Request, res: Response){
-        res.status(200).json({
+        res.status(HTTPStatus.OK).json({
             messagem: 'ok'
         });
     }
     createUser(req: Request, res: Response){
-        res.status(200).json({
+        res.status(HTTPStatus.OK).json({
             messagem: 'ok'
         });
     }
     getById(req: Request, res: Response){
-        res.status(200).json({
+        res.status(HTTPStatus.OK).json({
             messagem: 'ok'
         });
     }
     updateUser(req: Request, res: Response){
-        res.status(200).json({
+        res.status(HTTPStatus.OK).json({
             messagem: 'ok'
         });
     }
     deleteUser(req: Request, res: Response){
-        res.status(200).json({
+        res.status(HTTPStatus.OK).json({
             messagem: 'ok'
         });
     }
