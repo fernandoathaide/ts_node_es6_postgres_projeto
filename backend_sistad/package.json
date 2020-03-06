@@ -9,8 +9,8 @@
     "producao": "NODE_ENV=producao ./node_modules/.bin/ts-node ./server/server.ts",
     "desenvolvimento": "NODE_ENV=desenvolvimento node ./build/server/server.js",
     "homologacao": "NODE_ENV=homologacao node ./build/server/server.js",
-    "unit-teste": "NODE_ENV=teste mocha --opts ./tests/unit/config/mocha.opts ./build/tests/unit/unit.test.js",
-    "integration-teste": "NODE_ENV=teste mocha --opts ./tests/integration/config/mocha.opts ./build/tests/integration/integration.test.js"
+    "unit-teste": "NODE_ENV=teste mocha --opts ./build/tests/unit/config/mocha.opts ./build/tests/unit/unit.test.js",
+    "integration-teste": "NODE_ENV=teste mocha --opts ./build/tests/integration/config/mocha.opts ./build/tests/integration/integration.test.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/fernandoathaide/ts_node_es6_postgres_projeto#readme",
   "dependencies": {
+    "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "http": "0.0.0",
@@ -40,6 +41,7 @@
     "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.30",
     "@types/body-parser": "^1.19.0",
     "@types/chai": "^4.2.10",
     "@types/express": "^4.17.3",

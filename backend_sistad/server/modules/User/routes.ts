@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import UserController from './userController';
+import UserController from './controllerUser';
 
 let UserCtrl;
 
@@ -7,7 +7,6 @@ class UserRoutes{
     constructor(){
         UserCtrl = new UserController();
     }
-
     index(req: Request, res: Response){ 
         return UserCtrl.getAll(req, res); 
     }

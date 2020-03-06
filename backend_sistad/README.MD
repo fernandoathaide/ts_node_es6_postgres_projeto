@@ -24,3 +24,7 @@ npm install -g sequelize-cli
 ## Biblioteca HTTP Status
 npm i http-status -S
 npm i @types/http-status -D
+
+## Biblioteca BLUEBIRD
+npm i bluebird -S
+npm i @types/bluebird -D

@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var userController_1 = require("./userController");
+var controllerUser_1 = require("./controllerUser");
 var UserCtrl;
 var UserRoutes = /** @class */ (function () {
     function UserRoutes() {
-        UserCtrl = new userController_1.default();
+        UserCtrl = new controllerUser_1.default();
     }
     UserRoutes.prototype.index = function (req, res) {
         return UserCtrl.getAll(req, res);
