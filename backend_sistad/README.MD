@@ -18,3 +18,5 @@ npm i @types/mocha @types/chai @types/supertest -D
 ## Inicializando o Sequelize dentro da pasta server
 cd server
 sequelize init
+### Caso de erro
+npm install -g sequelize-cli
