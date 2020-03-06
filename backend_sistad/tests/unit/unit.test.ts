@@ -1,6 +1,6 @@
 import { testDouble, expect } from './config/helpers';
 
-describe('Testes Unitários do Controller', () =>{
+describe('Testes Unitários do userController', () =>{
     describe('Método Create', () => {
         it('Deve Criar um novo Usuário', () =>{
 

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-describe('Testes Unitários do Controller', function () {
+describe('Testes Unitários do userController', function () {
     describe('Método Create', function () {
         it('Deve Criar um novo Usuário', function () {
         });

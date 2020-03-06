@@ -1,38 +1,14 @@
 import { app, request, expect } from './config/helpers';
 
 
-describe('Testes de Integração',() =>{
-    describe('GET /', () =>{
-        it('Deve retornar Ola você SISTAD!', done =>{
-            request(app)
-            .get('/')
-            .end((error, res)=>{
-                expect(res.status).to.equal(200);
-                expect(res.text).to.equal('Ola você SISTAD!');
-                done(error);                
-            })
-        });
-    });
-    describe('GET /ola/:nome', () =>{
-        it('Deve retornar Ola você SISTAD!', done =>{
-            const nome = 'Fernando';
-            request(app)
-            .get(`/ola/${nome}`)
-            .end((error, res)=>{
-                expect(res.status).to.equal(200);
-                expect(res.text).to.equal('Ola Fernando SISTAD!');
-                done(error);                
-            })
-        });
-    });
-
-
+describe('Testes de Integração',() => { 
     describe('GET /api/users/all', () =>{
         it('Deve retornar um Json com todos os usuários', done =>{
             request(app)
             .get('/api/users/all')
             .end((error, res)=>{
                 expect(res.status).to.equal(200);
+                done(error);// Caso retorne error se não apenas finaliza
             })
         });
     });
@@ -42,37 +18,41 @@ describe('Testes de Integração',() =>{
             .get(`/api/users/${1}`)
             .end((error, res)=>{
                 expect(res.status).to.equal(200);
+                done(error);
             })
         });
     });
-    describe('POST /api/users/new', () =>{
+    describe('POST /api/users/create', () =>{
         it('Deve inserir/Criar novo usuário, retorno 200', done =>{
             const user = {nome:'FernandoTeste'}
             request(app)
-            .post('/api/users/new')
+            .post('/api/users/create')
             .send(user)
             .end((error, res)=>{
                 expect(res.status).to.equal(200);
+                done(error);
             })
         });
     });
-    describe('PUT /api/users/:id/edit', () =>{
+    describe('PUT /api/users/:id/update', () =>{
         it('Deve Alterar/Atualizar usuário, retorno 200', done =>{
             const user = {nome:'FernandoTeste'}
             request(app)
-            .put(`/api/users/new/${1}/edit`)
+            .put(`/api/users/new/${1}/update`)
             .send(user)
             .end((error, res)=>{
                 expect(res.status).to.equal(200);
+                done(error);
             })
         });
     });
-    describe('DELETE /api/users/:id', () =>{
+    describe('DELETE /api/users/:id/destroy', () =>{
         it('Deve deletar usuário', done =>{
             request(app)
-            .put(`/api/users/new/${1}`)
+            .delete(`/api/users/new/${1}/destroy`)
             .end((error, res)=>{
                 expect(res.status).to.equal(200);
+                done(error);
             })
         });
     });
