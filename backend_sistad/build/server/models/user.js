@@ -1,6 +1,6 @@
 "use strict";
-// import * as bcrypt from 'bcrypt';
 Object.defineProperty(exports, "__esModule", { value: true });
+// import * as bcrypt from 'bcrypt';
 function default_1(sequelize, DataTypes) {
     var User = sequelize.define('User', {
         id_user: {
