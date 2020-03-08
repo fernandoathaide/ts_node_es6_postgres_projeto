@@ -46,7 +46,7 @@ describe('Testes Unitários do userController', () =>{
     describe('Método Delete', () => {
         it('Deve Deletar um Usuário', () =>{
             return ServiceUser.delete(1).then(data => {
-                //expect(data[0]).to.be.equal(1);
+                //expect(data[0]).to.be.equal(1); a execução do comando em banco retorna uma Run afetada
                 console.log('DATA NA TELA = ' + data[0]);
             })
         });

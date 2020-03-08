@@ -42,7 +42,7 @@ describe('Testes Unitários do userController', function () {
     describe('Método Delete', function () {
         it('Deve Deletar um Usuário', function () {
             return serviceUser_1.default.delete(1).then(function (data) {
-                //expect(data[0]).to.be.equal(1);
+                //expect(data[0]).to.be.equal(1); a execução do comando em banco retorna uma Run afetada
                 console.log('DATA NA TELA = ' + data[0]);
             });
         });
