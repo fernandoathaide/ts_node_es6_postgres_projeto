@@ -1,18 +1,18 @@
-import { testDouble, expect } from './config/helpers';
+import { expect } from './config/helpers';
 import ServiceUser from '../../server/modules/User/serviceUser';
-import { json } from 'body-parser';
 
 describe('Testes Unitários do userController', () =>{
+    const userDefault = { 
+        id_user: 1, 
+        name: 'Teste Unitário', 
+        email: 'teste@unitario.com', 
+        password: 'teste' 
+    };
+    
+    //CRIAR USER TESTE
     describe('Método Create', () => {
-        //CRIAR USER TESTE
         it('Deve Criar um novo Usuário', () =>{
-            const user = { 
-                id_user: 1, 
-                name: 'Teste Unitário', 
-                email: 'teste@unitario.com', 
-                password: 'teste' 
-            };
-            return ServiceUser.create(user)
+            return ServiceUser.create(userDefault)
             .then(data =>{
                 console.log('DATA CREATE data.dataValues == ');
                 console.log(JSON.stringify(data.dataValues));
@@ -22,6 +22,7 @@ describe('Testes Unitários do userController', () =>{
             });
         });
     });
+    
     //UPDATE USER TESTE
     describe('Método Update', () => {
         it('Deve Alterar um Usuário', () =>{
@@ -31,6 +32,7 @@ describe('Testes Unitários do userController', () =>{
             })
         });
     });
+    
     //BUSCAR TODOS USER TESTE
     describe('Método Buscar Usuários', () => {
         it('Deve Retornar Lista com os Usuários', () =>{
@@ -42,6 +44,31 @@ describe('Testes Unitários do userController', () =>{
             })
         });
     });
+    
+    //BUSCAR POR ID USER TESTE
+    describe('Método Buscar Usuários Por ID', () => {
+        it('Deve Retornar um Usuário buscado', () =>{
+            return ServiceUser.getById(userDefault.id_user).then(data => {
+                expect(data).to.have.all.keys(
+                    ['email', 'id_user', 'name', 'password']
+                  );
+                console.log(JSON.stringify(data));
+            })
+        });
+    });
+
+    //BUSCAR POR EMAIL USER TESTE
+    describe('Método Buscar Usuários Por EMAIL', () => {
+        it('Deve Retornar um Usuário buscado por email', () =>{
+            return ServiceUser.getByEmail(userDefault.email).then(data => {
+                expect(data).to.have.all.keys(
+                    ['email', 'id_user', 'name', 'password']
+                  );
+                console.log(JSON.stringify(data));
+            })
+        });
+    });
+    
     //EXCLUIR USER TESTE
     describe('Método Delete', () => {
         it('Deve Deletar um Usuário', () =>{

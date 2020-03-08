@@ -3,16 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var helpers_1 = require("./config/helpers");
 var serviceUser_1 = require("../../server/modules/User/serviceUser");
 describe('Testes Unitários do userController', function () {
+    var userDefault = {
+        id_user: 1,
+        name: 'Teste Unitário',
+        email: 'teste@unitario.com',
+        password: 'teste'
+    };
+    //CRIAR USER TESTE
     describe('Método Create', function () {
-        //CRIAR USER TESTE
         it('Deve Criar um novo Usuário', function () {
-            var user = {
-                id_user: 1,
-                name: 'Teste Unitário',
-                email: 'teste@unitario.com',
-                password: 'teste'
-            };
-            return serviceUser_1.default.create(user)
+            return serviceUser_1.default.create(userDefault)
                 .then(function (data) {
                 console.log('DATA CREATE data.dataValues == ');
                 console.log(JSON.stringify(data.dataValues));
@@ -35,6 +35,24 @@ describe('Testes Unitários do userController', function () {
             return serviceUser_1.default.getAll().then(function (data) {
                 helpers_1.expect(data).to.be.an('array');
                 helpers_1.expect(data[0]).to.have.all.keys(['email', 'id_user', 'name', 'password']);
+            });
+        });
+    });
+    //BUSCAR POR ID USER TESTE
+    describe('Método Buscar Usuários Por ID', function () {
+        it('Deve Retornar um Usuário buscado', function () {
+            return serviceUser_1.default.getById(userDefault.id_user).then(function (data) {
+                helpers_1.expect(data).to.have.all.keys(['email', 'id_user', 'name', 'password']);
+                console.log(JSON.stringify(data));
+            });
+        });
+    });
+    //BUSCAR POR EMAIL USER TESTE
+    describe('Método Buscar Usuários Por EMAIL', function () {
+        it('Deve Retornar um Usuário buscado por email', function () {
+            return serviceUser_1.default.getByEmail(userDefault.email).then(function (data) {
+                helpers_1.expect(data).to.have.all.keys(['email', 'id_user', 'name', 'password']);
+                console.log(JSON.stringify(data));
             });
         });
     });
