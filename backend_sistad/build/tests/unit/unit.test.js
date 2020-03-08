@@ -13,7 +13,7 @@ describe('Testes Unitários do userController', function () {
             };
             return serviceUser_1.default.create(user)
                 .then(function (data) {
-                helpers_1.expect(data.dataValues).to.have.all.keys(['email', 'id_user', 'name', 'password', 'updateAt', 'createdAt']);
+                helpers_1.expect(data.dataValues).to.have.all.keys(['email', 'id_user', 'name', 'password', 'updatedAt', 'createdAt']);
             });
         });
     });
@@ -23,13 +23,16 @@ describe('Testes Unitários do userController', function () {
     
             });
         });
-    
-        describe('Método Buscar Usuários', () => {
-            it('Deve Retornar Lista com os Usuários', () =>{
-    
+    */
+    describe('Método Buscar Usuários', function () {
+        it('Deve Retornar Lista com os Usuários', function () {
+            return serviceUser_1.default.getAll().then(function (data) {
+                helpers_1.expect(data).to.be.an('array');
+                helpers_1.expect(data[0]).to.have.all.keys(['email', 'id_user', 'name', 'password']);
             });
         });
-    
+    });
+    /*
         describe('Método Delete', () => {
             it('Deve Deletar um Usuário', () =>{
     

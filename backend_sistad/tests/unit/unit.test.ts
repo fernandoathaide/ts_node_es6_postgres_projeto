@@ -13,7 +13,7 @@ describe('Testes Unitários do userController', () =>{
             return ServiceUser.create(user)
             .then(data =>{
                 expect(data.dataValues).to.have.all.keys(
-                    ['email', 'id_user','name','password','updateAt','createdAt']
+                    ['email','id_user','name','password','updatedAt','createdAt']
                 )
             });
         });
@@ -24,13 +24,18 @@ describe('Testes Unitários do userController', () =>{
 
         });
     });
-
+*/
     describe('Método Buscar Usuários', () => {
         it('Deve Retornar Lista com os Usuários', () =>{
-
+            return ServiceUser.getAll().then(data => {
+                expect(data).to.be.an('array');
+                expect(data[0]).to.have.all.keys(
+                    ['email','id_user','name','password']
+                );
+            })
         });
     });
-
+/*
     describe('Método Delete', () => {
         it('Deve Deletar um Usuário', () =>{
 
