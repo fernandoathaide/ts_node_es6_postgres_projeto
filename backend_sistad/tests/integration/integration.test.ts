@@ -6,8 +6,8 @@ describe('Testes de Integração',() => {
 
   'use strict';
   const config = require('../../server/config/env/config')();
-  
   let id_user;
+  
   const userTest = {
       id_user: 100,
       name: 'Default User',

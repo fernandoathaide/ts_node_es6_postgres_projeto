@@ -2,7 +2,7 @@ import { IUser, IUserDetail, createUser, createUsers, createUserById, createUser
 import * as Bluebird from 'bluebird';
 const model = require('../../models');
 
-export class ServiceUser implements IUser{
+class ServiceUser implements IUser{
     public id_user: number;
     public name: string;
     public email: string;
@@ -45,4 +45,4 @@ export class ServiceUser implements IUser{
           });
     }
 }
-//export default new ServiceUser();
+export default new ServiceUser();

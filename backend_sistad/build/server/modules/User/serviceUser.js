@@ -41,5 +41,4 @@ var ServiceUser = /** @class */ (function () {
     };
     return ServiceUser;
 }());
-exports.ServiceUser = ServiceUser;
-//export default new ServiceUser();
+exports.default = new ServiceUser();
