@@ -16,8 +16,8 @@ describe('Testes de Integração', function () {
     };
     var userDefault = {
         id_user: 1,
-        name: 'Usuário Teste',
-        email: 'teste@gmail.com',
+        name: 'Default User',
+        email: 'default@gmail.com',
         password: 'teste'
     };
     beforeEach(function (done) {
@@ -41,6 +41,7 @@ describe('Testes de Integração', function () {
                 .set('Content-Type', 'application/json')
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
+                console.log(JSON.stringify(res.body));
                 helpers_1.expect(res.body.payload).to.be.an('array');
                 helpers_1.expect(res.body.payload[0].name).to.be.equal(userDefault.name);
                 helpers_1.expect(res.body.payload[0].email).to.be.equal(userDefault.email);

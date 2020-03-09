@@ -2,38 +2,40 @@ import * as HTTPStatus from 'http-status';
 import { app, request, expect } from './config/helpers';
 const model = require('../../server/models');
 
-describe('Testes de Integração',() => { 
-    
-    'use strict';
-    const config = require('../../server/config/env/config')();
-    
-    let id_user;
-    const userTest = {
-        id_user: 100,
-        name: 'Default User',
-        email: 'default@gmail.com',
-        password: 'default'
-    };
-    const userDefault = {
-        id_user: 1,
-        name: 'Usuário Teste',
-        email: 'teste@gmail.com',
-        password: 'teste'
-    };
-    beforeEach((done) => {
-        model.User.destroy({
-            where: {} //Todos os registros serão deletados
-        })
-        .then(() =>{
-            return model.User.create(userDefault)
-        })
-        .then(user =>{
-            model.User.create(userTest)
-            .then(() =>{
-                done();
-            })
-        })
-    });
+describe('Testes de Integração',() => {
+
+  'use strict';
+  const config = require('../../server/config/env/config')();
+  
+  let id_user;
+  const userTest = {
+      id_user: 100,
+      name: 'Default User',
+      email: 'default@gmail.com',
+      password: 'default'
+  };
+  const userDefault = {
+      id_user: 1,
+      name: 'Default User',
+      email: 'default@gmail.com',
+      password: 'teste'
+  };
+  beforeEach((done) => {
+      model.User.destroy({
+          where: {} //Todos os registros serão deletados
+      })
+      .then(() =>{
+          return model.User.create(userDefault)
+      })
+      .then(user =>{
+          model.User.create(userTest)
+          .then(() =>{
+              done();
+          })
+      })
+  });
+
+   
     describe('GET /api/users/all', () =>{
         it('Deve retornar um Json com todos os usuários', done =>{
             request(app)
@@ -41,6 +43,7 @@ describe('Testes de Integração',() => {
             .set('Content-Type', 'application/json')
             .end((error, res)=>{
                 expect(res.status).to.equal(HTTPStatus.OK);
+                console.log(JSON.stringify(res.body));
                 expect(res.body.payload).to.be.an('array');
                 expect(res.body.payload[0].name).to.be.equal(userDefault.name);
                 expect(res.body.payload[0].email).to.be.equal(userDefault.email);
@@ -48,6 +51,7 @@ describe('Testes de Integração',() => {
             })
         });
     });
+   
     describe('GET /api/users/:id_user', () =>{
         it('Deve retornar um Json com um usuário', done =>{
             request(app)
@@ -62,6 +66,7 @@ describe('Testes de Integração',() => {
             })
         });
     });
+
     describe('POST /api/users/create', () =>{
         it('Deve inserir/Criar novo usuário, retorno 200', done =>{
             const user = {

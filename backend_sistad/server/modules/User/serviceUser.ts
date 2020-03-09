@@ -2,7 +2,7 @@ import { IUser, IUserDetail, createUser, createUsers, createUserById, createUser
 import * as Bluebird from 'bluebird';
 const model = require('../../models');
 
-class ServiceUser implements IUser{
+export class ServiceUser implements IUser{
     public id_user: number;
     public name: string;
     public email: string;
@@ -10,28 +10,28 @@ class ServiceUser implements IUser{
 
     constructor(){}
 
-    create(user: any){
+    createUser(user: any){
         return model.User.create(user);
     }
-    getAll(): Bluebird<IUser[]>{
+    getAllUser(): Bluebird<IUser[]>{
         return model.User.findAll({
             order: ['name']
           })
           .then(createUsers);
     }
-    getById(id_user: number): Bluebird<IUserDetail[]>{
+    getUserById(id_user: number): Bluebird<IUserDetail[]>{
         return model.User.findOne({
             where: {id_user}
           })
           .then(createUserById);
     }
-    getByEmail(email: string): Bluebird<IUserDetail[]>{
-        return model.User.findOne({
+    getUserByEmail(email: string): Bluebird<IUserDetail[]>{
+        return model.User.findAll({
             where: {email}
           })
           .then(createUserByEmail);
     }
-    update(id_user: number, user: any){
+    updateUser(id_user: number, user: any){
         return model.User.update(user, {
             where: {id_user},
             fields: ['name', 'email', 'password'],
@@ -39,10 +39,10 @@ class ServiceUser implements IUser{
             individualHooks: true
           });
     }
-    delete(id_user: number){
+    deleteUser(id_user: number){
         return model.User.destroy({
             where: {id_user}
           });
     }
 }
-export default new ServiceUser();
+//export default new ServiceUser();

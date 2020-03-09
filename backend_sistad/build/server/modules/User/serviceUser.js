@@ -5,28 +5,28 @@ var model = require('../../models');
 var ServiceUser = /** @class */ (function () {
     function ServiceUser() {
     }
-    ServiceUser.prototype.create = function (user) {
+    ServiceUser.prototype.createUser = function (user) {
         return model.User.create(user);
     };
-    ServiceUser.prototype.getAll = function () {
+    ServiceUser.prototype.getAllUser = function () {
         return model.User.findAll({
             order: ['name']
         })
             .then(interfaceUser_1.createUsers);
     };
-    ServiceUser.prototype.getById = function (id_user) {
+    ServiceUser.prototype.getUserById = function (id_user) {
         return model.User.findOne({
             where: { id_user: id_user }
         })
             .then(interfaceUser_1.createUserById);
     };
-    ServiceUser.prototype.getByEmail = function (email) {
-        return model.User.findOne({
+    ServiceUser.prototype.getUserByEmail = function (email) {
+        return model.User.findAll({
             where: { email: email }
         })
             .then(interfaceUser_1.createUserByEmail);
     };
-    ServiceUser.prototype.update = function (id_user, user) {
+    ServiceUser.prototype.updateUser = function (id_user, user) {
         return model.User.update(user, {
             where: { id_user: id_user },
             fields: ['name', 'email', 'password'],
@@ -34,11 +34,12 @@ var ServiceUser = /** @class */ (function () {
             individualHooks: true
         });
     };
-    ServiceUser.prototype.delete = function (id_user) {
+    ServiceUser.prototype.deleteUser = function (id_user) {
         return model.User.destroy({
             where: { id_user: id_user }
         });
     };
     return ServiceUser;
 }());
-exports.default = new ServiceUser();
+exports.ServiceUser = ServiceUser;
+//export default new ServiceUser();

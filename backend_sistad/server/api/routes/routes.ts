@@ -1,23 +1,19 @@
-import { Application, Request, Response } from 'express';
+import { Application } from 'express';
 import UserRoutes from '../../modules/User/routes';
 
 
-class Routes{
-
-    private router: UserRoutes;
+class Routes {
 
     constructor(app: Application){
-        this.router = new UserRoutes();
         this.getRoutes(app);
     }
 
     getRoutes(app: Application): void{
-        app.route('/api/users/all').get(this.router.index);
-        app.route('/api/users/create').post(this.router.create);
-        app.route('/api/users/:id_user').get(this.router.findOne);
-        app.route('/api/users/:id_user/update').put(this.router.update);
-        app.route('/api/users/:id_user/destroy').delete(this.router.destroy); 
+        app.route('/api/users/all').get(UserRoutes.indexUser);
+        app.route('/api/users/create').post(UserRoutes.createUser);
+        app.route('/api/users/:id_user').get(UserRoutes.findOneUser);
+        app.route('/api/users/:id_user/update').put(UserRoutes.updateUser);
+        app.route('/api/users/:id_user/destroy').delete(UserRoutes.destroyUser); 
     }
 }
-
 export default Routes;
