@@ -2,6 +2,9 @@ import * as HTTPStatus from 'http-status';
 import { Request, Response } from 'express';
 import * as _ from 'lodash';
 import { ServiceUser } from './serviceUser';
+import { onError } from '../../api/responses/errorHandler';
+import { onSuccess } from '../../api/responses/successHandler';
+import { dbErrorHandler } from '../../config/dbErrorHandler';
 
 
 class UserController {
@@ -14,69 +17,36 @@ class UserController {
    getAllUser(req: Request, res: Response){
         this.serviceUser
             .getAllUser()
-            .then(data => {
-                res.status(HTTPStatus.OK).json({
-                    payload: data
-                });
-            }).catch(err =>{
-                res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({
-                    payload: `Erro ao buscar todos os usuários. ${err}`
-                });
-            });
+            .then(_.partial(onSuccess, res))
+            .catch(_.partial(onError, res, 'Erro ao buscar todos os usuários.'))
     }
     createUser(req: Request, res: Response){
         this.serviceUser
             .createUser(req.body)
-            .then(data => {
-                res.status(HTTPStatus.OK).json({
-                    payload: data
-                });
-            }).catch(err =>{
-                res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({
-                    payload: `Erro ao cadastrar novo usuários. ${err}`
-                });
-            });
+            .then(_.partial(onSuccess, res))
+            .catch(_.partial(dbErrorHandler, res))
+            .catch(_.partial(onError, res, 'Erro ao criar o usuário.'))
     }
     getUserById(req: Request, res: Response){
         this.serviceUser
             .getUserById(parseInt(req.params.id_user))
-            .then(data => {
-                res.status(HTTPStatus.OK).json({
-                    payload: data
-                });
-            }).catch(err =>{
-                res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({
-                    payload: `Erro ao buscar usuário por ID. ${err}`
-                });
-            });
+            .then(_.partial(onSuccess, res))
+            .catch(_.partial(onError, res, 'Erro ao buscar um usuário por ID.'))
     }
     updateUser(req: Request, res: Response){
         const id_user = parseInt(req.params.id_user);
         const props = req.body;
         this.serviceUser
             .updateUser(id_user, props)
-            .then(data => {
-                res.status(HTTPStatus.OK).json({
-                    payload: data
-                });
-            }).catch(err =>{
-                res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({
-                    payload: `Erro ao alterar usuário por ID. ${err}`
-                });
-            });
+            .then(_.partial(onSuccess, res))
+            .catch(_.partial(dbErrorHandler, res))
+            .catch(_.partial(onError, res, 'Erro ao alterar o usuário.'))
     }
     deleteUser(req: Request, res: Response){
         this.serviceUser
             .deleteUser(parseInt(req.params.id_user))
-            .then(data => {
-                res.status(HTTPStatus.OK).json({
-                    payload: data
-                });
-            }).catch(err =>{
-                res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({
-                    payload: `Erro ao deletar usuário por ID. ${err}`
-                });
-            });
+            .then(_.partial(onSuccess, res))
+            .catch(_.partial(onError, res, 'Erro ao deletar um usuário.'))
     }
 }
 export default new UserController();

@@ -28,3 +28,7 @@ npm i @types/http-status -D
 ## Biblioteca BLUEBIRD
 npm i bluebird -S
 npm i @types/bluebird -D
+
+## Biblioteca LODASH
+npm i lodash -S
+npm i @types/lodash -D
