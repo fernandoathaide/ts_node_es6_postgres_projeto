@@ -4,7 +4,13 @@ import UserRoutes from '../../modules/User/routes';
 
 class Routes {
 
-    constructor(app: Application){
+    // private router: UserRoutes;
+    private tokenRoute;
+    private auth;
+
+    constructor(app: Application, auth: any){
+        // this.router = new UserRoutes();
+        this.auth = auth;
         this.getRoutes(app);
     }
 
@@ -13,7 +19,11 @@ class Routes {
         app.route('/api/users/create').post(UserRoutes.createUser);
         app.route('/api/users/:id_user').get(UserRoutes.findOneUser);
         app.route('/api/users/:id_user/update').put(UserRoutes.updateUser);
-        app.route('/api/users/:id_user/destroy').delete(UserRoutes.destroyUser); 
+        app.route('/api/users/:id_user/destroy').delete(UserRoutes.destroyUser);
+        
+        //Rota da passagem do Token
+        app.route('/token').post(this.tokenRoute.auth);
+
     }
 }
 export default Routes;

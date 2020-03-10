@@ -7,7 +7,9 @@ import Routes from './routes/routes';
 import { errorHandlerApi } from './errorHandlerApi';
 
 class Api{
+
     public aplicationExpress: Application;
+    public auth;
 
     constructor(){
         this.aplicationExpress = express();
@@ -19,11 +21,11 @@ class Api{
         this.aplicationExpress.use(bodyParser.urlencoded({extended: true})); // URLENCODED - Formato dos dados submetidas extended true vai ser capaz de interpretar mais informações do que o padrão.
         this.aplicationExpress.use(bodyParser.json());//Se o que for passado for um JSON transformando em um objeto para ser tratado aqui dentro
         this.aplicationExpress.use(errorHandlerApi);
-        this.router(this.aplicationExpress);
+        this.router(this.aplicationExpress, this.auth);
     }
 
-    private router(app: Application): void{
-        new Routes(app);
+    private router(app: Application, auth: any): void{
+        new Routes(app, auth);
     }
 }
 

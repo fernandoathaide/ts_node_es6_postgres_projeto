@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var routes_1 = require("../../modules/User/routes");
 var Routes = /** @class */ (function () {
-    function Routes(app) {
+    function Routes(app, auth) {
+        // this.router = new UserRoutes();
+        this.auth = auth;
         this.getRoutes(app);
     }
     Routes.prototype.getRoutes = function (app) {
@@ -11,6 +13,8 @@ var Routes = /** @class */ (function () {
         app.route('/api/users/:id_user').get(routes_1.default.findOneUser);
         app.route('/api/users/:id_user/update').put(routes_1.default.updateUser);
         app.route('/api/users/:id_user/destroy').delete(routes_1.default.destroyUser);
+        //Rota da passagem do Token
+        app.route('/token').post(this.tokenRoute.auth);
     };
     return Routes;
 }());

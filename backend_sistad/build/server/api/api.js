@@ -16,10 +16,10 @@ var Api = /** @class */ (function () {
         this.aplicationExpress.use(bodyParser.urlencoded({ extended: true })); // URLENCODED - Formato dos dados submetidas extended true vai ser capaz de interpretar mais informações do que o padrão.
         this.aplicationExpress.use(bodyParser.json()); //Se o que for passado for um JSON transformando em um objeto para ser tratado aqui dentro
         this.aplicationExpress.use(errorHandlerApi_1.errorHandlerApi);
-        this.router(this.aplicationExpress);
+        this.router(this.aplicationExpress, this.auth);
     };
-    Api.prototype.router = function (app) {
-        new routes_1.default(app);
+    Api.prototype.router = function (app, auth) {
+        new routes_1.default(app, auth);
     };
     return Api;
 }());
