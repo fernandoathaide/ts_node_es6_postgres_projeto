@@ -1,6 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var controllerUser_1 = require("./controllerUser");
+var controllerUser_1 = __importDefault(require("./controllerUser"));
 var UserRoutes = /** @class */ (function () {
     function UserRoutes() {
     }

@@ -3,6 +3,8 @@
     "compilerOptions":{
         "target": "es5",
         "module": "commonjs",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
         "outDir": "build",
         "typeRoots": [
             "./node_modules/@types"

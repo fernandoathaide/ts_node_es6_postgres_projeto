@@ -56,3 +56,6 @@ npm i @types/lodash -D
 ## Bibliotecas JWT Passport jwt-simple
 npm i passport passport-jwt jwt-simple -S
 npm i @types/passport @types/passport-jwt @types/jwt-simple -D
+
+## Swagger para apresentação da API
+npm i swagger-ui-express -S

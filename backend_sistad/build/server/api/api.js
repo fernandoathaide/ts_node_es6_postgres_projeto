@@ -1,24 +1,37 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 //Definição inicial da nossa aplicação API de entrada.
-var express = require("express");
-var morgan = require("morgan");
-var bodyParser = require("body-parser");
-var routes_1 = require("./routes/routes");
+var express_1 = __importDefault(require("express"));
+var morgan_1 = __importDefault(require("morgan"));
+var bodyParser = __importStar(require("body-parser"));
+var routes_1 = __importDefault(require("./routes/routes"));
 var errorHandlerApi_1 = require("./errorHandlerApi");
-var auth_1 = require("../auth");
+var swaggerUi = __importStar(require("swagger-ui-express"));
+var swaggerDocument = __importStar(require("./swagger.json"));
+var auth_1 = __importDefault(require("../auth"));
 var Api = /** @class */ (function () {
     function Api() {
-        this.aplicationExpress = express();
+        this.aplicationExpress = express_1.default();
         this.auth = auth_1.default();
         this.middleware();
     }
     Api.prototype.middleware = function () {
-        this.aplicationExpress.use(morgan('dev')); //Toda requisição feita será gerada um log no console da aplicação para acompanhamento.
+        this.aplicationExpress.use(morgan_1.default('dev')); //Toda requisição feita será gerada um log no console da aplicação para acompanhamento.
         this.aplicationExpress.use(bodyParser.urlencoded({ extended: true })); // URLENCODED - Formato dos dados submetidas extended true vai ser capaz de interpretar mais informações do que o padrão.
         this.aplicationExpress.use(bodyParser.json()); //Se o que for passado for um JSON transformando em um objeto para ser tratado aqui dentro
         this.aplicationExpress.use(errorHandlerApi_1.errorHandlerApi);
         this.aplicationExpress.use(this.auth.initialize());
+        this.aplicationExpress.use('/api/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
         this.router(this.aplicationExpress, this.auth);
     };
     Api.prototype.router = function (app, auth) {

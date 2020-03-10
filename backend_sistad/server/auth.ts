@@ -1,4 +1,4 @@
-import * as passport from 'passport';
+import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import ServiceUser from './modules/User/serviceUser';
 const config = require('./config/env/config')();

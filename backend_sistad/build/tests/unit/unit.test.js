@@ -1,7 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var helpers_1 = require("./config/helpers");
-var serviceUser_1 = require("../../server/modules/User/serviceUser");
+var serviceUser_1 = __importDefault(require("../../server/modules/User/serviceUser"));
 var model = require('../../server/models');
 describe('Testes Unitários do userController', function () {
     var email;

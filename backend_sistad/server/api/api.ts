@@ -1,10 +1,13 @@
 //Definição inicial da nossa aplicação API de entrada.
-import * as express from 'express';
+import express from 'express';
 import { Application } from 'express';
-import * as morgan from 'morgan';
+import morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 import Routes from './routes/routes';
 import { errorHandlerApi } from './errorHandlerApi';
+
+import * as swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from './swagger.json';
 
 import AuthConfig from '../auth';
 
@@ -25,6 +28,7 @@ class Api{
         this.aplicationExpress.use(bodyParser.json());//Se o que for passado for um JSON transformando em um objeto para ser tratado aqui dentro
         this.aplicationExpress.use(errorHandlerApi);
         this.aplicationExpress.use(this.auth.initialize());
+        this.aplicationExpress.use('/api/swagger',swaggerUi.serve, swaggerUi.setup(swaggerDocument));
         this.router(this.aplicationExpress, this.auth);
     }
 

@@ -1,8 +1,15 @@
 "use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var HTTPStatus = require("http-status");
-var jwt = require("jwt-simple");
+var HTTPStatus = __importStar(require("http-status"));
+var jwt = __importStar(require("jwt-simple"));
 var helpers_1 = require("./config/helpers");
 var model = require('../../server/models');
 describe('Testes de Integração', function () {

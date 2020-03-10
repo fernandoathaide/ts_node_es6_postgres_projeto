@@ -7,6 +7,6 @@ module.exports = {
     host: 'localhost',
     serverPort: 3000,
     pgPort: 5432,
-    dbURL: 'postgres://postgres:wff%40260981N@localhost:5432/ts-api-desenvolvimento',
+    dbURL: 'postgres://postgres:wff%40260981N@localhost:5432/ts-api-development',
     secret: 'S3cr3t'
 };
