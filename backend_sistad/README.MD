@@ -32,3 +32,7 @@ npm i @types/bluebird -D
 ## Biblioteca LODASH
 npm i lodash -S
 npm i @types/lodash -D
+
+## Bibliotecas JWT Passport jwt-simple
+npm i passport passport-jwt jwt-simple -S
+npm i @types/passport @types/passport-jwt @types/jwt-simple -D
