@@ -6,9 +6,11 @@ var morgan = require("morgan");
 var bodyParser = require("body-parser");
 var routes_1 = require("./routes/routes");
 var errorHandlerApi_1 = require("./errorHandlerApi");
+var auth_1 = require("../auth");
 var Api = /** @class */ (function () {
     function Api() {
         this.aplicationExpress = express();
+        this.auth = auth_1.default();
         this.middleware();
     }
     Api.prototype.middleware = function () {
@@ -16,6 +18,7 @@ var Api = /** @class */ (function () {
         this.aplicationExpress.use(bodyParser.urlencoded({ extended: true })); // URLENCODED - Formato dos dados submetidas extended true vai ser capaz de interpretar mais informações do que o padrão.
         this.aplicationExpress.use(bodyParser.json()); //Se o que for passado for um JSON transformando em um objeto para ser tratado aqui dentro
         this.aplicationExpress.use(errorHandlerApi_1.errorHandlerApi);
+        this.aplicationExpress.use(this.auth.initialize());
         this.router(this.aplicationExpress, this.auth);
     };
     Api.prototype.router = function (app, auth) {

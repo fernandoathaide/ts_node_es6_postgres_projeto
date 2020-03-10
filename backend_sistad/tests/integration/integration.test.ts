@@ -1,4 +1,5 @@
 import * as HTTPStatus from 'http-status';
+import * as jwt from 'jwt-simple';
 import { app, request, expect } from './config/helpers';
 const model = require('../../server/models');
 
@@ -6,41 +7,75 @@ describe('Testes de Integração',() => {
 
   'use strict';
   const config = require('../../server/config/env/config')();
-  let id_user;
-  
+  let token;
+
   const userTest = {
-      id_user: 100,
-      name: 'Default User',
-      email: 'default@gmail.com',
-      password: 'default'
+    id_user: 100,
+    name: 'Usuário Teste',
+    email: 'teste@email.com',
+    password: 'teste'
   };
+
   const userDefault = {
-      id_user: 1,
-      name: 'Default User',
-      email: 'default@gmail.com',
-      password: 'teste'
+    id_user: 1,
+    name: 'Default',
+    email: 'default@email.com',
+    password: 'teste'
   };
-  beforeEach((done) => {
+
+    beforeEach((done) => {
       model.User.destroy({
-          where: {} //Todos os registros serão deletados
+        where: {}
       })
-      .then(() =>{
-          return model.User.create(userDefault)
+      .then(() => {
+        return model.User.create(userDefault);
       })
-      .then(user =>{
-          model.User.create(userTest)
-          .then(() =>{
-              done();
+      .then(user => {
+        model.User.create(userTest)
+          .then(() => {
+            this.token = jwt.encode({id_user: user.id_user}, config.secret);
+            done();
           })
       })
-  });
+    });
 
-   
+    describe('POST /token', () => {
+      it('Deve receber um JWT', done => {
+        const credentials = {
+          email: userDefault.email,
+          password: userDefault.password
+        };
+        request(app)
+          .post('/token')
+          .send(credentials)
+          .end((error, res) => {
+            expect(res.status).to.equal(HTTPStatus.OK);
+            expect(res.body.token).to.equal(`${this.token}`);
+            done(error);
+          });
+      })
+      it('Não deve gerar Token', done => {
+        const credentials = {
+          email: 'email@emailqualquer.com',
+          password: 'qualquer'
+        };
+        request(app)
+          .post('/token')
+          .send(credentials)
+          .end((error, res) => {
+            expect(res.status).to.equal(HTTPStatus.UNAUTHORIZED);
+            expect(res.body).to.empty;
+            done(error);
+          })
+      })
+    });
+  
     describe('GET /api/users/all', () =>{
         it('Deve retornar um Json com todos os usuários', done =>{
             request(app)
             .get('/api/users/all')
             .set('Content-Type', 'application/json')
+            .set('Authorization', `JWT ${this.token}`)
             .end((error, res)=>{
                 expect(res.status).to.equal(HTTPStatus.OK);
                 console.log(JSON.stringify(res.body));
@@ -57,6 +92,7 @@ describe('Testes de Integração',() => {
             request(app)
             .get(`/api/users/${userDefault.id_user}`)
             .set('Content-Type', 'application/json')
+            .set('Authorization', `JWT ${this.token}`)
             .end((error, res)=>{
                 expect(res.status).to.equal(HTTPStatus.OK);
                 expect(res.body.payload.id_user).to.equal(userDefault.id_user);
@@ -78,6 +114,7 @@ describe('Testes de Integração',() => {
             request(app)
             .post('/api/users/create')
             .set('Content-Type', 'application/json')
+            .set('Authorization', `JWT ${this.token}`)
             .send(user)
             .end((error, res)=>{
                 expect(res.status).to.equal(HTTPStatus.OK);
@@ -97,6 +134,7 @@ describe('Testes de Integração',() => {
           request(app)
             .put(`/api/users/${userTest.id_user}/update`)
             .set('Content-Type', 'application/json')
+            .set('Authorization', `JWT ${this.token}`)
             .send(user)
             .end((error, res) => {
               expect(res.status).to.equal(HTTPStatus.OK);
@@ -110,6 +148,7 @@ describe('Testes de Integração',() => {
           request(app)
             .del(`/api/users/${userTest.id_user}/destroy`)
             .set('Content-Type', 'application/json')
+            .set('Authorization', `JWT ${this.token}`)
             .end((error, res) => {
               expect(res.status).to.equal(HTTPStatus.OK);
               expect(res.body.payload).to.eql(1);

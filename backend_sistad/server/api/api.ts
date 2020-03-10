@@ -6,6 +6,8 @@ import * as bodyParser from 'body-parser';
 import Routes from './routes/routes';
 import { errorHandlerApi } from './errorHandlerApi';
 
+import AuthConfig from '../auth';
+
 class Api{
 
     public aplicationExpress: Application;
@@ -13,6 +15,7 @@ class Api{
 
     constructor(){
         this.aplicationExpress = express();
+        this.auth = AuthConfig();
         this.middleware();
     }
 
@@ -21,6 +24,7 @@ class Api{
         this.aplicationExpress.use(bodyParser.urlencoded({extended: true})); // URLENCODED - Formato dos dados submetidas extended true vai ser capaz de interpretar mais informações do que o padrão.
         this.aplicationExpress.use(bodyParser.json());//Se o que for passado for um JSON transformando em um objeto para ser tratado aqui dentro
         this.aplicationExpress.use(errorHandlerApi);
+        this.aplicationExpress.use(this.auth.initialize());
         this.router(this.aplicationExpress, this.auth);
     }
 

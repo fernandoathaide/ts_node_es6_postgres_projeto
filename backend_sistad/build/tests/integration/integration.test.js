@@ -2,27 +2,28 @@
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var HTTPStatus = require("http-status");
+var jwt = require("jwt-simple");
 var helpers_1 = require("./config/helpers");
 var model = require('../../server/models');
 describe('Testes de Integração', function () {
     'use strict';
     var config = require('../../server/config/env/config')();
-    var id_user;
+    var token;
     var userTest = {
         id_user: 100,
-        name: 'Default User',
-        email: 'default@gmail.com',
-        password: 'default'
+        name: 'Usuário Teste',
+        email: 'teste@email.com',
+        password: 'teste'
     };
     var userDefault = {
         id_user: 1,
-        name: 'Default User',
-        email: 'default@gmail.com',
+        name: 'Default',
+        email: 'default@email.com',
         password: 'teste'
     };
     beforeEach(function (done) {
         model.User.destroy({
-            where: {} //Todos os registros serão deletados
+            where: {}
         })
             .then(function () {
             return model.User.create(userDefault);
@@ -30,7 +31,38 @@ describe('Testes de Integração', function () {
             .then(function (user) {
             model.User.create(userTest)
                 .then(function () {
+                _this.token = jwt.encode({ id_user: user.id_user }, config.secret);
                 done();
+            });
+        });
+    });
+    describe('POST /token', function () {
+        it('Deve receber um JWT', function (done) {
+            var credentials = {
+                email: userDefault.email,
+                password: userDefault.password
+            };
+            helpers_1.request(helpers_1.app)
+                .post('/token')
+                .send(credentials)
+                .end(function (error, res) {
+                helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
+                helpers_1.expect(res.body.token).to.equal("" + _this.token);
+                done(error);
+            });
+        });
+        it('Não deve gerar Token', function (done) {
+            var credentials = {
+                email: 'email@emailqualquer.com',
+                password: 'qualquer'
+            };
+            helpers_1.request(helpers_1.app)
+                .post('/token')
+                .send(credentials)
+                .end(function (error, res) {
+                helpers_1.expect(res.status).to.equal(HTTPStatus.UNAUTHORIZED);
+                helpers_1.expect(res.body).to.empty;
+                done(error);
             });
         });
     });
@@ -39,6 +71,7 @@ describe('Testes de Integração', function () {
             helpers_1.request(helpers_1.app)
                 .get('/api/users/all')
                 .set('Content-Type', 'application/json')
+                .set('Authorization', "JWT " + _this.token)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
                 console.log(JSON.stringify(res.body));
@@ -54,6 +87,7 @@ describe('Testes de Integração', function () {
             helpers_1.request(helpers_1.app)
                 .get("/api/users/" + userDefault.id_user)
                 .set('Content-Type', 'application/json')
+                .set('Authorization', "JWT " + _this.token)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
                 helpers_1.expect(res.body.payload.id_user).to.equal(userDefault.id_user);
@@ -74,6 +108,7 @@ describe('Testes de Integração', function () {
             helpers_1.request(helpers_1.app)
                 .post('/api/users/create')
                 .set('Content-Type', 'application/json')
+                .set('Authorization', "JWT " + _this.token)
                 .send(user)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
@@ -93,6 +128,7 @@ describe('Testes de Integração', function () {
             helpers_1.request(helpers_1.app)
                 .put("/api/users/" + userTest.id_user + "/update")
                 .set('Content-Type', 'application/json')
+                .set('Authorization', "JWT " + _this.token)
                 .send(user)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
@@ -106,6 +142,7 @@ describe('Testes de Integração', function () {
             helpers_1.request(helpers_1.app)
                 .del("/api/users/" + userTest.id_user + "/destroy")
                 .set('Content-Type', 'application/json')
+                .set('Authorization', "JWT " + _this.token)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
                 helpers_1.expect(res.body.payload).to.eql(1);
