@@ -21,7 +21,7 @@ var ServiceUser = /** @class */ (function () {
             .then(interfaceUser_1.createUserById);
     };
     ServiceUser.prototype.getUserByEmail = function (email) {
-        return model.User.findAll({
+        return model.User.findOne({
             where: { email: email }
         })
             .then(interfaceUser_1.createUserByEmail);

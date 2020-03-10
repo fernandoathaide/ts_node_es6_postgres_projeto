@@ -26,7 +26,7 @@ class ServiceUser implements IUser{
           .then(createUserById);
     }
     getUserByEmail(email: string): Bluebird<IUserDetail[]>{
-        return model.User.findAll({
+        return model.User.findOne({
             where: {email}
           })
           .then(createUserByEmail);

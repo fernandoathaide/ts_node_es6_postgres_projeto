@@ -1,18 +1,40 @@
 import { expect } from './config/helpers';
 import ServiceUser from '../../server/modules/User/serviceUser';
+const model = require('../../server/models');
+
 
 describe('Testes Unitários do userController', () =>{
-    const userDefault = { 
-        id_user: 1, 
-        name: 'Teste Unitário', 
-        email: 'teste@unitario.com', 
-        password: 'teste' 
-    };
+
+    let email;
+    let _id;
+    
+      const userDefault = {
+        id_user: 1,
+        name: 'Default User',
+        email: 'defaultuser@email.com',
+        password: '1234'
+      }
+      beforeEach((done) => {
+        model.User.destroy({
+          where: {}
+        })
+        .then(() => {
+          model.User.create(userDefault).then(() => {
+            console.log(`Default User created`)
+            done();
+          });
+        })
+      });
     
     //CRIAR USER TESTE
     describe('Método Create', () => {
         it('Deve Criar um novo Usuário', () =>{
-            return ServiceUser.createUser(userDefault)
+            return ServiceUser.createUser({
+                id_user: 2,
+                name: 'Default User 2',
+                email: 'defaultuser@email.com',
+                password: '1234'
+              })
             .then(data =>{
                 console.log('DATA CREATE data.dataValues == ');
                 console.log(JSON.stringify(data.dataValues));
@@ -64,7 +86,6 @@ describe('Testes Unitários do userController', () =>{
                 expect(data).to.have.all.keys(
                     ['email', 'id_user', 'name', 'password']
                   );
-                console.log(JSON.stringify(data));
             })
         });
     });

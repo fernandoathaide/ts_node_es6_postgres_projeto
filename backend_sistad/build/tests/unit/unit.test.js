@@ -2,17 +2,36 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var helpers_1 = require("./config/helpers");
 var serviceUser_1 = require("../../server/modules/User/serviceUser");
+var model = require('../../server/models');
 describe('Testes Unitários do userController', function () {
+    var email;
+    var _id;
     var userDefault = {
         id_user: 1,
-        name: 'Teste Unitário',
-        email: 'teste@unitario.com',
-        password: 'teste'
+        name: 'Default User',
+        email: 'defaultuser@email.com',
+        password: '1234'
     };
+    beforeEach(function (done) {
+        model.User.destroy({
+            where: {}
+        })
+            .then(function () {
+            model.User.create(userDefault).then(function () {
+                console.log("Default User created");
+                done();
+            });
+        });
+    });
     //CRIAR USER TESTE
     describe('Método Create', function () {
         it('Deve Criar um novo Usuário', function () {
-            return serviceUser_1.default.createUser(userDefault)
+            return serviceUser_1.default.createUser({
+                id_user: 2,
+                name: 'Default User 2',
+                email: 'defaultuser@email.com',
+                password: '1234'
+            })
                 .then(function (data) {
                 console.log('DATA CREATE data.dataValues == ');
                 console.log(JSON.stringify(data.dataValues));
@@ -52,7 +71,6 @@ describe('Testes Unitários do userController', function () {
         it('Deve Retornar um Usuário buscado por email', function () {
             return serviceUser_1.default.getUserByEmail(userDefault.email).then(function (data) {
                 helpers_1.expect(data).to.have.all.keys(['email', 'id_user', 'name', 'password']);
-                console.log(JSON.stringify(data));
             });
         });
     });

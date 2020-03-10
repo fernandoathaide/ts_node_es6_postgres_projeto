@@ -13,7 +13,7 @@ class TokenRoutes {
     };
 
     if(credentials.hasOwnProperty('email') && credentials.hasOwnProperty('password')) {
-        ServiceUser
+      ServiceUser
         .getUserByEmail(credentials.email)
         .then(_.partial(authSuccess, res, credentials))
         .catch(_.partial(authFail, req, res));
