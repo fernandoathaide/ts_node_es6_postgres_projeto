@@ -18,7 +18,9 @@ var Routes = /** @class */ (function () {
         app.route('/api/users/:id_user').all(this.auth.authenticate()).get(routes_1.default.findOneUser);
         app.route('/api/users/:id_user/update').all(this.auth.authenticate()).put(routes_1.default.updateUser);
         app.route('/api/users/:id_user/destroy').all(this.auth.authenticate()).delete(routes_1.default.destroyUser);
-        app.route('/').get(function (req, res) { return res.send('Ola você SISTAD!'); });
+        //app.route('/').get(function (req, res) { return res.send('Ola você SISTAD!'); });
+        //Rota para acesso ao coverage
+        app.route('/coverage').get(function (req, res) { return res.sendFile('/home/fernano/Documentos/ESTUDOS/ts_node_es6_postgres_projeto/backend_sistad/coverage/index.html'); });
         //Rota da passagem do Token
         app.route('/token').post(this.tokenRoute.auth);
     };
