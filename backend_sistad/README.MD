@@ -63,3 +63,6 @@ npm i swagger-ui-express -S
 ## BCRYPT Criptografia das senhas
 npm i bcrypt -S
 npm i @types/bcrypt -D
+
+## Biblioteca para cobertura de código
+npm i istanbul nyc -D

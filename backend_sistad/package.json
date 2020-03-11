@@ -10,7 +10,9 @@
     "desenvolvimento": "NODE_ENV=desenvolvimento nodemon ./build/server/server.js",
     "homologacao": "NODE_ENV=homologacao node ./build/server/server.js",
     "unit-teste": "NODE_ENV=teste mocha --opts ./build/tests/unit/config/mocha.opts ./build/tests/unit/unit.test.js",
-    "integration-teste": "NODE_ENV=teste mocha --opts ./build/tests/integration/config/mocha.opts ./build/tests/integration/integration.test.js"
+    "integration-teste": "NODE_ENV=teste mocha --opts ./build/tests/integration/config/mocha.opts ./build/tests/integration/integration.test.js",
+    "unit-coverage": "nyc --reporter=html npm run unit-teste",
+    "integration-coverage": "nyc --reporter=html npm run integration-teste"
   },
   "repository": {
     "type": "git",
@@ -64,7 +66,9 @@
     "@types/sequelize": "^4.28.8",
     "@types/supertest": "^2.0.8",
     "chai": "^4.2.0",
+    "istanbul": "^0.4.5",
     "mocha": "^7.1.0",
+    "nyc": "^15.0.0",
     "supertest": "^4.0.2",
     "testdouble": "^3.13.0",
     "ts-node": "^8.6.2",

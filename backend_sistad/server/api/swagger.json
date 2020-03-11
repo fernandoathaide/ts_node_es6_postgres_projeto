@@ -197,7 +197,7 @@
                 }
             }
         },
-        "User": {
+        "User-Teste": {
             "type": "object",
             "properties": {
                 "genus": {
