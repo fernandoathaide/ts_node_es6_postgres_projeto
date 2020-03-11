@@ -56,3 +56,4 @@ isntall dbeaver para gerenciar os bancos de dados
     rbbit.typescript-hero
     vscode-icons-team.vscode-icons
     auchenberg.vscode-browser-preview
+    Swagger Viewer
