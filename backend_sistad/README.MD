@@ -59,3 +59,7 @@ npm i @types/passport @types/passport-jwt @types/jwt-simple -D
 
 ## Swagger para apresentação da API
 npm i swagger-ui-express -S
+
+## BCRYPT Criptografia das senhas
+npm i bcrypt -S
+npm i @types/bcrypt -D

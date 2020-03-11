@@ -1,4 +1,5 @@
-// import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
+
 export default function (sequelize, DataTypes) {
     const User = sequelize.define('User', {
         id_user: {
@@ -28,7 +29,7 @@ export default function (sequelize, DataTypes) {
         }
         }
     });
-    /*
+    
     User.beforeCreate((user) => {
         return hashPassword(user);
     });
@@ -36,11 +37,11 @@ export default function (sequelize, DataTypes) {
     User.beforeUpdate((user) => {
         return hashPassword(user);
     });
-    /*
+    
     function hashPassword(user) {
-        const salt = bcrypt.genSaltSync(10);
+        const salt = bcrypt.genSaltSync(10); //Roda por 10 vezes
         user.set('password', bcrypt.hashSync(user.password, salt));
     }
-    */
+    
     return User;
 }

@@ -1,6 +1,13 @@
 "use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-// import * as bcrypt from 'bcrypt';
+var bcrypt = __importStar(require("bcrypt"));
 function default_1(sequelize, DataTypes) {
     var User = sequelize.define('User', {
         id_user: {
@@ -30,20 +37,16 @@ function default_1(sequelize, DataTypes) {
             }
         }
     });
-    /*
-    User.beforeCreate((user) => {
+    User.beforeCreate(function (user) {
         return hashPassword(user);
     });
-    
-    User.beforeUpdate((user) => {
+    User.beforeUpdate(function (user) {
         return hashPassword(user);
     });
-    /*
     function hashPassword(user) {
-        const salt = bcrypt.genSaltSync(10);
+        var salt = bcrypt.genSaltSync(10); //Roda por 10 vezes
         user.set('password', bcrypt.hashSync(user.password, salt));
     }
-    */
     return User;
 }
 exports.default = default_1;

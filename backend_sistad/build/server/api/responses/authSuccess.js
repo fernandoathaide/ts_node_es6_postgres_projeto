@@ -9,10 +9,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var HTTPStatus = __importStar(require("http-status"));
 var jwt = __importStar(require("jwt-simple"));
-// import * as bcrypt from 'bcrypt';
+var bcrypt = __importStar(require("bcrypt"));
 var config = require('../../config/env/config')();
 function authSuccess(res, credentials, data) {
-    var isMatch = (credentials.password == data.password);
+    var isMatch = bcrypt.compareSync(credentials.password, data.password);
     if (isMatch) {
         var payload = { id_user: data.id_user };
         res.json({
