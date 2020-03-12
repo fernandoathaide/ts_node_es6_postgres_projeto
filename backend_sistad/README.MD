@@ -66,3 +66,22 @@ npm i @types/bcrypt -D
 
 ## Biblioteca para cobertura de código
 npm i istanbul nyc -D
+
+
+# GULP Automatização
+    O gulp é um kit de ferramentas JavaScript de código aberto criado por Eric Schoffstall usado como um sistema de criação de streaming no desenvolvimento web front-end.
+    Obs.: Também pode ser usado para acelerar o desenvolvimento do BackEnd.
+
+## Instalação do modulo CLI do Gulp
+    npm install -D gulp
+    sudo npm install -g gulp-cli
+    gulpfile.js //Arquivo de configuração criado na raiz do projeto onde será feita a automatização
+    METODOS PRINCIPAIS: 
+        gulp.src(args)                  //Arquivo ou diretório a ser lido
+        gulp.dest(dest)                 //Destino de saída do processamento
+        gulp.task(nome,callback() {} )  //Cria uma tarefa e executa dentro da função de callback
+        gulp.run(task1, task2 ...)      //Execulta as tarefas em ordem
+        gulp.watch(arg, task)           //Executa uma determinada task com base no argumento passado
+
+    Apos criar o arquivo gulpfile.js basta rodar o comando 
+    gulp [nome da task]
