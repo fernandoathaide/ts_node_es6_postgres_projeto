@@ -44,20 +44,17 @@ describe('Testes Unitários do userController', () =>{
     describe('Método Update', () => {
         it('Deve Alterar um Usuário', () =>{
             const userUpdate = { name:'UserUpdate', email: 'userUpdate@teste.com'}
-            return ServiceUser.updateUser(1, userUpdate).then(data => {
+            return ServiceUser.updateUser(userDefault.id_user, userUpdate).then(data => {
                 expect(data[0]).to.be.equal(1);
             })
         });
     });
     
     //BUSCAR TODOS USER TESTE
-    describe('Método Buscar Usuários', () => {
+    describe('Método GET Users Buscar Usuários', () => {
         it('Deve Retornar Lista com os Usuários', () =>{
             return ServiceUser.getAllUser().then(data => {
-                expect(data).to.be.an('array');
-                expect(data[0]).to.have.all.keys(
-                    ['email','id_user','name','password']
-                );
+                expect(data).to.be.an('array'); //Proposito do teste é apenas verificar se o retorno é uma lista
             })
         });
     });
@@ -87,7 +84,7 @@ describe('Testes Unitários do userController', () =>{
     //EXCLUIR USER TESTE
     describe('Método Delete', () => {
         it('Deve Deletar um Usuário', () =>{
-            return ServiceUser.deleteUser(1).then(data => {
+            return ServiceUser.deleteUser(userDefault.id_user).then(data => {
                 expect(data).to.be.equal(1); //a execução do comando em banco retorna uma Run afetada                
             })
         });

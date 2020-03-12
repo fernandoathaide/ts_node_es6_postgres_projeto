@@ -15,6 +15,7 @@
     },
     "include":[
         "server/**/*.ts", //Todas as pastas e seus arquivos ts
+        "server/**/**/*.ts",
         "server/*.ts", //Todas os arquivos ts
         "tests/**/*.ts",
         "tests/*.ts"

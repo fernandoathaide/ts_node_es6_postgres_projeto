@@ -42,17 +42,16 @@ describe('Testes Unitários do userController', function () {
     describe('Método Update', function () {
         it('Deve Alterar um Usuário', function () {
             var userUpdate = { name: 'UserUpdate', email: 'userUpdate@teste.com' };
-            return serviceUser_1.default.updateUser(1, userUpdate).then(function (data) {
+            return serviceUser_1.default.updateUser(userDefault.id_user, userUpdate).then(function (data) {
                 helpers_1.expect(data[0]).to.be.equal(1);
             });
         });
     });
     //BUSCAR TODOS USER TESTE
-    describe('Método Buscar Usuários', function () {
+    describe('Método GET Users Buscar Usuários', function () {
         it('Deve Retornar Lista com os Usuários', function () {
             return serviceUser_1.default.getAllUser().then(function (data) {
-                helpers_1.expect(data).to.be.an('array');
-                helpers_1.expect(data[0]).to.have.all.keys(['email', 'id_user', 'name', 'password']);
+                helpers_1.expect(data).to.be.an('array'); //Proposito do teste é apenas verificar se o retorno é uma lista
             });
         });
     });
@@ -75,7 +74,7 @@ describe('Testes Unitários do userController', function () {
     //EXCLUIR USER TESTE
     describe('Método Delete', function () {
         it('Deve Deletar um Usuário', function () {
-            return serviceUser_1.default.deleteUser(1).then(function (data) {
+            return serviceUser_1.default.deleteUser(userDefault.id_user).then(function (data) {
                 helpers_1.expect(data).to.be.equal(1); //a execução do comando em banco retorna uma Run afetada                
             });
         });
