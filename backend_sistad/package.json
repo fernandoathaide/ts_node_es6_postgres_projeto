@@ -9,8 +9,8 @@
     "producao": "NODE_ENV=producao ./node_modules/.bin/ts-node ./server/server.ts",
     "desenvolvimento": "NODE_ENV=desenvolvimento nodemon ./build/server/server.js",
     "homologacao": "NODE_ENV=homologacao node ./build/server/server.js",
-    "unit-teste": "NODE_ENV=teste mocha --opts ./build/tests/unit/config/mocha.opts ./build/tests/unit/unit.test.js",
-    "integration-teste": "NODE_ENV=teste mocha --opts ./build/tests/integration/config/mocha.opts ./build/tests/integration/integration.test.js",
+    "unit-teste": "NODE_ENV=teste mocha --opts ./build/tests/unit/config/mocha.opts ./build/tests/unit/*.js",
+    "integration-teste": "NODE_ENV=teste mocha --opts ./build/tests/integration/config/mocha.opts ./build/tests/integration/*.js",
     "unit-coverage": "nyc --reporter=html npm run unit-teste",
     "integration-coverage": "nyc --reporter=html npm run integration-teste"
   },

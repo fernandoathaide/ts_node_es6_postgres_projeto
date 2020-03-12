@@ -7,8 +7,6 @@ var helpers_1 = require("./config/helpers");
 var serviceUser_1 = __importDefault(require("../../server/modules/User/serviceUser"));
 var model = require('../../server/models');
 describe('Testes Unitários do userController', function () {
-    var email;
-    var _id;
     var userDefault = {
         id_user: 1,
         name: 'Default User',
@@ -36,8 +34,6 @@ describe('Testes Unitários do userController', function () {
                 password: '1234'
             })
                 .then(function (data) {
-                console.log('DATA CREATE data.dataValues == ');
-                console.log(JSON.stringify(data.dataValues));
                 helpers_1.expect(data.dataValues).to.have.all.keys(['email', 'id_user', 'name', 'password', 'updatedAt', 'createdAt']);
             });
         });
@@ -65,7 +61,6 @@ describe('Testes Unitários do userController', function () {
         it('Deve Retornar um Usuário buscado', function () {
             return serviceUser_1.default.getUserById(userDefault.id_user).then(function (data) {
                 helpers_1.expect(data).to.have.all.keys(['email', 'id_user', 'name', 'password']);
-                console.log(JSON.stringify(data));
             });
         });
     });
@@ -81,8 +76,7 @@ describe('Testes Unitários do userController', function () {
     describe('Método Delete', function () {
         it('Deve Deletar um Usuário', function () {
             return serviceUser_1.default.deleteUser(1).then(function (data) {
-                helpers_1.expect(data).to.be.equal(1); //a execução do comando em banco retorna uma Run afetada
-                console.log('DATA NA TELA = ' + data);
+                helpers_1.expect(data).to.be.equal(1); //a execução do comando em banco retorna uma Run afetada                
             });
         });
     });

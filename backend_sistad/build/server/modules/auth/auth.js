@@ -12,8 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = __importStar(require("lodash"));
 var serviceUser_1 = __importDefault(require("../User/serviceUser"));
-var authSuccess_1 = __importDefault(require("../../api/responses/authSuccess"));
-var authFail_1 = __importDefault(require("../../api/responses/authFail"));
+var handlers_1 = __importDefault(require("../../api/responses/handlers"));
 var TokenRoutes = /** @class */ (function () {
     function TokenRoutes() {
     }
@@ -25,8 +24,8 @@ var TokenRoutes = /** @class */ (function () {
         if (credentials.hasOwnProperty('email') && credentials.hasOwnProperty('password')) {
             serviceUser_1.default
                 .getUserByEmail(credentials.email)
-                .then(_.partial(authSuccess_1.default, res, credentials))
-                .catch(_.partial(authFail_1.default, req, res));
+                .then(_.partial(handlers_1.default.authSuccess, res, credentials))
+                .catch(_.partial(handlers_1.default.authFail, req, res));
         }
     };
     return TokenRoutes;

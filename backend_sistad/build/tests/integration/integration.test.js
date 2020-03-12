@@ -43,14 +43,14 @@ describe('Testes de Integração', function () {
             });
         });
     });
-    describe('POST /token', function () {
+    describe('POST /api/token', function () {
         it('Deve receber um JWT', function (done) {
             var credentials = {
                 email: userDefault.email,
                 password: userDefault.password
             };
             helpers_1.request(helpers_1.app)
-                .post('/token')
+                .post('/api/token')
                 .send(credentials)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
@@ -64,7 +64,7 @@ describe('Testes de Integração', function () {
                 password: 'qualquer'
             };
             helpers_1.request(helpers_1.app)
-                .post('/token')
+                .post('/api/token')
                 .send(credentials)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.UNAUTHORIZED);
@@ -81,7 +81,6 @@ describe('Testes de Integração', function () {
                 .set('Authorization', "JWT " + _this.token)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
-                console.log(JSON.stringify(res.body));
                 helpers_1.expect(res.body.payload).to.be.an('array');
                 helpers_1.expect(res.body.payload[0].name).to.be.equal(userDefault.name);
                 helpers_1.expect(res.body.payload[0].email).to.be.equal(userDefault.email);

@@ -39,14 +39,14 @@ describe('Testes de Integração',() => {
       })
     });
 
-    describe('POST /token', () => {
+    describe('POST /api/token', () => {
       it('Deve receber um JWT', done => {
         const credentials = {
           email: userDefault.email,
           password: userDefault.password
         };
         request(app)
-          .post('/token')
+          .post('/api/token')
           .send(credentials)
           .end((error, res) => {
             expect(res.status).to.equal(HTTPStatus.OK);
@@ -60,7 +60,7 @@ describe('Testes de Integração',() => {
           password: 'qualquer'
         };
         request(app)
-          .post('/token')
+          .post('/api/token')
           .send(credentials)
           .end((error, res) => {
             expect(res.status).to.equal(HTTPStatus.UNAUTHORIZED);
@@ -78,7 +78,6 @@ describe('Testes de Integração',() => {
             .set('Authorization', `JWT ${this.token}`)
             .end((error, res)=>{
                 expect(res.status).to.equal(HTTPStatus.OK);
-                console.log(JSON.stringify(res.body));
                 expect(res.body.payload).to.be.an('array');
                 expect(res.body.payload[0].name).to.be.equal(userDefault.name);
                 expect(res.body.payload[0].email).to.be.equal(userDefault.email);

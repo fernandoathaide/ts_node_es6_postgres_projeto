@@ -4,9 +4,6 @@ const model = require('../../server/models');
 
 
 describe('Testes Unitários do userController', () =>{
-
-    let email;
-    let _id;
     
       const userDefault = {
         id_user: 1,
@@ -36,8 +33,6 @@ describe('Testes Unitários do userController', () =>{
                 password: '1234'
               })
             .then(data =>{
-                console.log('DATA CREATE data.dataValues == ');
-                console.log(JSON.stringify(data.dataValues));
                 expect(data.dataValues).to.have.all.keys(
                     ['email','id_user','name','password','updatedAt','createdAt']
                 )
@@ -74,7 +69,6 @@ describe('Testes Unitários do userController', () =>{
                 expect(data).to.have.all.keys(
                     ['email', 'id_user', 'name', 'password']
                   );
-                console.log(JSON.stringify(data));
             })
         });
     });
@@ -94,8 +88,7 @@ describe('Testes Unitários do userController', () =>{
     describe('Método Delete', () => {
         it('Deve Deletar um Usuário', () =>{
             return ServiceUser.deleteUser(1).then(data => {
-                expect(data).to.be.equal(1); //a execução do comando em banco retorna uma Run afetada
-                console.log('DATA NA TELA = ' + data);
+                expect(data).to.be.equal(1); //a execução do comando em banco retorna uma Run afetada                
             })
         });
     });

@@ -15,27 +15,26 @@ var express_1 = __importDefault(require("express"));
 var morgan_1 = __importDefault(require("morgan"));
 var bodyParser = __importStar(require("body-parser"));
 var routes_1 = __importDefault(require("./routes/routes"));
-var errorHandlerApi_1 = require("./errorHandlerApi");
 var swaggerUi = __importStar(require("swagger-ui-express"));
 var swaggerDocument = __importStar(require("./swagger.json"));
 var auth_1 = __importDefault(require("../auth"));
+var handlers_1 = __importDefault(require("./responses/handlers"));
 var Api = /** @class */ (function () {
     function Api() {
         this.aplicationExpress = express_1.default();
-        this.auth = auth_1.default();
         this.middleware();
     }
     Api.prototype.middleware = function () {
         this.aplicationExpress.use(morgan_1.default('dev')); //Toda requisição feita será gerada um log no console da aplicação para acompanhamento.
         this.aplicationExpress.use(bodyParser.urlencoded({ extended: true })); // URLENCODED - Formato dos dados submetidas extended true vai ser capaz de interpretar mais informações do que o padrão.
         this.aplicationExpress.use(bodyParser.json()); //Se o que for passado for um JSON transformando em um objeto para ser tratado aqui dentro
-        this.aplicationExpress.use(errorHandlerApi_1.errorHandlerApi);
-        this.aplicationExpress.use(this.auth.initialize());
+        this.aplicationExpress.use(handlers_1.default.errorHandlerApi);
+        this.aplicationExpress.use(auth_1.default.config().initialize());
         this.aplicationExpress.use('/api/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-        this.router(this.aplicationExpress, this.auth);
+        this.router(this.aplicationExpress, auth_1.default);
     };
     Api.prototype.router = function (app, auth) {
-        new routes_1.default(app, auth);
+        routes_1.default.initRoutes(app, auth);
     };
     return Api;
 }());
