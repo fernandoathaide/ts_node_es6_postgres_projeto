@@ -73,8 +73,9 @@ npm i istanbul nyc -D
     Obs.: Também pode ser usado para acelerar o desenvolvimento do BackEnd.
 
 ## Instalação do modulo CLI do Gulp
-    npm install -D gulp
-    sudo npm install -g gulp-cli
+    npm i gulp gulp-typescript gulp-clean -D
+    npm install -g gulp-cli
+    npm install -S gulp-cli
     gulpfile.js //Arquivo de configuração criado na raiz do projeto onde será feita a automatização
     METODOS PRINCIPAIS: 
         gulp.src(args)                  //Arquivo ou diretório a ser lido
