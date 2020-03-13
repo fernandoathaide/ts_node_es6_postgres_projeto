@@ -3,21 +3,33 @@
     "compilerOptions":{
         "target": "es5",
         "module": "commonjs",
+
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+    
         "resolveJsonModule": true,
         "esModuleInterop": true,
-        "outDir": "build",
+        "outDir": "dist", //Arquivos de distribuições código gerado será enviado para o server de produção
         "typeRoots": [
             "./node_modules/@types"
         ],
-        "types":[
-            "node"
-        ]
+        "types":["node", "lodash", "express"]
     },
+    "file":[
+        "./tests/unit/config/mocha.opts",
+        "./tests/integration/config/mocha.opts"
+    ],
     "include":[
         "server/**/*.ts", //Todas as pastas e seus arquivos ts
         "server/**/**/*.ts",
         "server/*.ts", //Todas os arquivos ts
+        //Arquivos de teste
+        "tests/**/*",
         "tests/**/*.ts",
+        "./tests/unit/config/*",
+        "./tests/integration/config/*",
+        "tests/**/**/*.ts",
         "tests/*.ts"
     ],
     "exclude":[

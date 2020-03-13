@@ -4,12 +4,12 @@
   "description": "API de desenvolvimento para o BACKEND da aplicaçao da FAB SISTAD.",
   "main": "./server/server.ts",
   "scripts": {
-    "start": "NODE_ENV=development nodemon ./server/server.ts",
-    "builded": "NODE_ENV=production nodemon ./build/server/server.js",
-    "desenvolvimento": "NODE_ENV=desenvolvimento nodemon ./build/server/server.js",
-    "homologacao": "NODE_ENV=homologacao nodemon ./build/server/server.js",
-    "unit-teste": "NODE_ENV=teste mocha --opts ./build/tests/unit/config/mocha.opts ./build/tests/unit/*.js",
-    "integration-teste": "NODE_ENV=teste mocha --opts ./build/tests/integration/config/mocha.opts ./build/tests/integration/*.js",
+    "start": "PORT=5000 NODE_ENV=development nodemon ./server/server.ts",
+    "builded": "NODE_ENV=production nodemon ./dist/server/server.js",
+    "desenvolvimento": "NODE_ENV=desenvolvimento nodemon ./dist/server/server.js",
+    "homologacao": "NODE_ENV=homologacao nodemon ./dist/server/server.js",
+    "unit-teste": "NODE_ENV=teste mocha --opts ./dist/tests/unit/config/mocha.opts ./dist/tests/unit/*.js",
+    "integration-teste": "NODE_ENV=teste mocha --opts ./dist/tests/integration/config/mocha.opts ./dist/tests/integration/*.js",
     "unit-coverage": "nyc --reporter=html npm run unit-teste",
     "integration-coverage": "nyc --reporter=html npm run integration-teste"
   },
