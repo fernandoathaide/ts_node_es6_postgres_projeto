@@ -86,3 +86,10 @@ npm i istanbul nyc -D
 
     Apos criar o arquivo gulpfile.js basta rodar o comando 
     gulp [nome da task]
+
+# FERRAMENTA PARA INTEGRAÇÃO CONTINÚA
+            jenkins
+            Circle CI
+            Travis CI
+## Instalando e Configurando o TRAVIS CI - Integrado ao GitHub que trabalha com o NODE.
+Criar o arquivo .travis.yml
