@@ -35,8 +35,14 @@ npm i mocha chai supertest testdouble -D
 npm i @types/mocha @types/chai @types/supertest -D
 
 ## Inicializando o Sequelize dentro da pasta server
-cd server
-sequelize init
+    cd server
+    sequelize init
+### Criando e executando migration com o sequelize
+    sequelize model:create --name User --attributes name:string,email:string,password:string
+    ID, createdAt e UpdatedAt ele cria automatico
+    sequelize db:migrate --env test
+
+
 ### Caso de erro
 npm install -g sequelize-cli
 npm i sequelize-cli -S
