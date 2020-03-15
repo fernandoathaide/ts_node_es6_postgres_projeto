@@ -9,4 +9,3 @@ function createAuthors(data) {
     return data.map(createAuthor);
 }
 exports.createAuthors = createAuthors;
-//# sourceMappingURL=interfaceAuthor.js.map

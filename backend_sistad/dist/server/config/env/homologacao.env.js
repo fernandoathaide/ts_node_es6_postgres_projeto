@@ -10,4 +10,3 @@ module.exports = {
     dbURL: 'postgres://postgres:wff%40260981N@localhost:5432/ts-api-homologacao',
     secret: 'homologacao'
 };
-//# sourceMappingURL=homologacao.env.js.map

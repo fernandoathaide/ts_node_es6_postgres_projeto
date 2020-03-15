@@ -38,4 +38,3 @@ var Api = (function () {
     return Api;
 }());
 exports.default = new Api().aplicationExpress;
-//# sourceMappingURL=api.js.map

@@ -23,4 +23,3 @@ function default_1(sequelize, DataTypes) {
     return Post;
 }
 exports.default = default_1;
-//# sourceMappingURL=post.js.map

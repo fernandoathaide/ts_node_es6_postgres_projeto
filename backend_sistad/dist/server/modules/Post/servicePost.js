@@ -37,4 +37,3 @@ var ServicePost = (function () {
     return ServicePost;
 }());
 exports.default = new ServicePost();
-//# sourceMappingURL=servicePost.js.map

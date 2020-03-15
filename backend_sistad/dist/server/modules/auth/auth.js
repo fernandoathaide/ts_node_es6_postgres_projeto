@@ -31,4 +31,3 @@ var TokenRoutes = (function () {
     return TokenRoutes;
 }());
 exports.default = new TokenRoutes();
-//# sourceMappingURL=auth.js.map

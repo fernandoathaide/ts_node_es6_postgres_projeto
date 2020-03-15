@@ -25,4 +25,3 @@ var AuthorRoutes = (function () {
     return AuthorRoutes;
 }());
 exports.default = new AuthorRoutes();
-//# sourceMappingURL=routes.js.map

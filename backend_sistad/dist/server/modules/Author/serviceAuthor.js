@@ -37,4 +37,3 @@ var ServiceAuthor = (function () {
     return ServiceAuthor;
 }());
 exports.default = new ServiceAuthor();
-//# sourceMappingURL=serviceAuthor.js.map

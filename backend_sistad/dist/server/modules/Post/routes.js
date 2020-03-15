@@ -25,4 +25,3 @@ var PostRoutes = (function () {
     return PostRoutes;
 }());
 exports.default = new PostRoutes();
-//# sourceMappingURL=routes.js.map

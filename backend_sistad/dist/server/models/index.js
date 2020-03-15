@@ -35,4 +35,3 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 relations(db);
 module.exports = db;
-//# sourceMappingURL=index.js.map

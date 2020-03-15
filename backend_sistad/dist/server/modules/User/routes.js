@@ -25,4 +25,3 @@ var UserRoutes = (function () {
     return UserRoutes;
 }());
 exports.default = new UserRoutes();
-//# sourceMappingURL=routes.js.map
