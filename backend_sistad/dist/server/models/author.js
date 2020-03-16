@@ -18,3 +18,4 @@ function default_1(sequelize, DataTypes) {
     return Author;
 }
 exports.default = default_1;
+//# sourceMappingURL=author.js.map

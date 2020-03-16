@@ -42,3 +42,4 @@ var ServiceUser = (function () {
     return ServiceUser;
 }());
 exports.default = new ServiceUser();
+//# sourceMappingURL=serviceUser.js.map

@@ -9,3 +9,4 @@ function createPosts(data) {
     return data.map(createPost);
 }
 exports.createPosts = createPosts;
+//# sourceMappingURL=interfacePost.js.map

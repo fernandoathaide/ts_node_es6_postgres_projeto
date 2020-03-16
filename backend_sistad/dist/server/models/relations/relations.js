@@ -3,3 +3,4 @@ var Relations = function (model) {
     model.Post.belongsTo(model.Author, { foreignKey: 'fk_id_author' });
 };
 module.exports = Relations;
+//# sourceMappingURL=relations.js.map

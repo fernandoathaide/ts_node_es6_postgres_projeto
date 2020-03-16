@@ -10,3 +10,4 @@ module.exports = {
     dbURL: 'postgres://postgres:wff%40260981N@localhost:5432/ts_api_test',
     secret: 'teste'
 };
+//# sourceMappingURL=teste.env.js.map

@@ -53,3 +53,4 @@ var ControllerAuthor = (function () {
     return ControllerAuthor;
 }());
 exports.default = new ControllerAuthor();
+//# sourceMappingURL=controllerAuthor.js.map

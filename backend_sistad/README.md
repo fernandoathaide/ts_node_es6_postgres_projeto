@@ -100,3 +100,6 @@ npm i istanbul nyc -D
             Travis CI
 ## Instalando e Configurando o TRAVIS CI - Integrado ao GitHub que trabalha com o NODE.
 Criar o arquivo .travis.yml
+
+# Programa para gravação de aulas
+Simple Scren Recorder

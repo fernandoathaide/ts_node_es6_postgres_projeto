@@ -53,3 +53,4 @@ var ControllerPost = (function () {
     return ControllerPost;
 }());
 exports.default = new ControllerPost();
+//# sourceMappingURL=controllerPost.js.map
