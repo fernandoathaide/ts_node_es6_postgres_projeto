@@ -92,3 +92,10 @@ sudo apt install code
 
 git config --global http.proxy http_proxy=http://juniorjwo:444425631003Ju%40@proxybrasilia.intraer:8080
 git config --global http.proxy http_proxy=https://juniorjwo:444425631003Ju%40@proxybrasilia.intraer:8080
+
+# configurar name.user
+git config --global user.name "juniorjwo"
+
+
+# configurar email.user
+git config --global user.email "juniorjwo"
