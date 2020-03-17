@@ -57,3 +57,38 @@ isntall dbeaver para gerenciar os bancos de dados
     vscode-icons-team.vscode-icons
     auchenberg.vscode-browser-preview
     Swagger Viewer
+
+
+# colocar em .bashrc para configurar saida do proxy 
+
+http_proxy=http://juniorjwo:444425631003Ju%40@proxybrasilia.intraer:8080/
+https_proxy=http://juniorjwo:444425631003Ju%40@proxybrasilia.intraer:8080/
+
+
+# instalar o nvm
+
+wget  https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+
+
+# instalar node 12.3
+
+ nvm install v12.13.0
+
+
+# instalar nodemon
+
+npm install -g nodemon
+	
+# instalar o visual Code
+
+sudo apt update
+sudo apt install software-properties-common apt-transport-https curl
+curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt update
+sudo apt install code
+
+# configurar proxy repositório GIT
+
+git config --global http.proxy http_proxy=http://juniorjwo:444425631003Ju%40@proxybrasilia.intraer:8080
+git config --global http.proxy http_proxy=https://juniorjwo:444425631003Ju%40@proxybrasilia.intraer:8080
