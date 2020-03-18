@@ -103,3 +103,6 @@ Criar o arquivo .travis.yml
 
 # Programa para gravação de aulas
 Simple Scren Recorder
+
+# Biblioteca para customizar o ENV
+npm i -S custom-env

@@ -37,19 +37,18 @@ export class CoreModule{
         this._aplicationExpress.use(bodyParser.urlencoded({extended: true})); // URLENCODED - Formato dos dados submetidas extended true vai ser capaz de interpretar mais informações do que o padrão.
         this._aplicationExpress.use(bodyParser.json());//Se o que for passado for um JSON transformando em um objeto para ser tratado aqui dentro
         this._aplicationExpress.use(ResponseHandlers.errorHandlerApi);
-        this._aplicationExpress.use(AuthService.config().initialize());
+        this._aplicationExpress.use(AuthService.initialize());
         this._aplicationExpress.use('/api/swagger',swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-        this.router(this._aplicationExpress, AuthService);
     }
     private configHeaders(req: Request, res: Response, next: NextFunction){
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
         res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-        // res.setHeader('Access-Control-Allow-Credentials', true);
+        //res.setHeader('Access-Control-Allow-Credentials', true);
         next();
     }
 
-    private router(app: Application, auth: any): void{
-        RouterModule.initRoutes(app, auth);
+    private router(): void{
+        RouterModule.exposeRoutes(this.authService.authenticate);
     }
 }
