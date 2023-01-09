@@ -43,7 +43,7 @@
     "nodemon": "^2.0.2",
     "npm": "^6.14.2",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
+    "passport-jwt": "^4.0.1",
     "pg": "^7.18.2",
     "sequelize": "^5.21.5",
     "sequelize-cli": "^5.5.1",
